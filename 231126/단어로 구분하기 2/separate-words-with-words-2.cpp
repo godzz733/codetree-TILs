@@ -6,7 +6,7 @@ int main() {
     string tem;
     for (int i=0; i<10; i++){
         cin >> tem;
-        if (i&1) cout << tem << '\n';
+        if ((i+1)&1) cout << tem << '\n';
     }
     return 0;
 }
