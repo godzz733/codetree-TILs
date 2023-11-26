@@ -11,7 +11,7 @@ int main() {
     int q = 1;
     for (int i=1; i<tem.length(); i++){
         if (tem[i] != a){
-            ans += string(1,a);
+            ans += a;
             ans += to_string(q);
             q = 1;
             a = tem[i];
@@ -19,7 +19,7 @@ int main() {
             q++;
         }
     }
-    ans += string(1,a);
+    ans += a;
     ans += to_string(q);
     cout << ans.length() << '\n' << ans;
     return 0;
