@@ -13,9 +13,9 @@ int main() {
     for (int i=0; i<10; i++){
         if (arr[i][arr[i].length()-1] == t){
         cout << arr[i] << '\n';
-        t++;
+        key++;
         }   
     }
-    if (!t) cout << "None";
+    if (!key) cout << "None";
     return 0;
 }
