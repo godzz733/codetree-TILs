@@ -9,7 +9,7 @@ int main() {
         int n;
         cin >> n;
         if (n >= a.length()) {
-            cout << a.erase(a.length()-1,1);
+            cout << a.erase(a.length()-1,1) << '\n';
             continue;
         }
         cout << a.erase(n,1) << '\n';
