@@ -6,12 +6,15 @@ int main() {
     string a,b;
     cin >> a >> b;
     for (int i=0; i<100; i++){
-        for (int j=0; j<a.length()-b.length()+1; j++){
+        for (int j=0; j<a.length()-b.length(); j++){
             if (a.substr(j,b.length()) == b) {
                 a.erase(j,b.length());
                 break;
             }
         }
+    }
+    if (a == b) {
+        a = "";
     }
     cout << a;
     return 0;
