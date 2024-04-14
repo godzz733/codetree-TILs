@@ -10,7 +10,6 @@ for i in range(2,m*3,3):
     a,b,c = tem[i],tem[i+1],tem[i+2]
     if a == b:
         test[a] = c
-        continue
     arr[a].append((b,c))
     arr[b].append((a,c))
 def dik(start):
