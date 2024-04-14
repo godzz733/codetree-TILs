@@ -29,7 +29,7 @@ def solve():
         num = [0,0,0,0]
         for i in range(1,4):
             for j in range(1,4):
-                turn(i,j)
+                turn(j,i)
         if num[0] == 0:
             break
         turn_cnt(num[1],num[2],num[3])
