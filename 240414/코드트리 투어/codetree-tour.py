@@ -5,10 +5,24 @@ command = int(input())
 tem = list(map(int, input().split()))[1:]
 n, m = tem[0], tem[1]
 arr = [[] for _ in range(n+1)]
-for i in range(2,m*3,3):
-    a,b,c = tem[i],tem[i+1],tem[i+2]
-    arr[a].append((b,c))
-    arr[b].append((a,c))
+A = [[int(1e9)]*n for _ in range(n)]
+for i in range(n):
+    A[i][i] = 0  # 도시 자신에게 가는 비용은 0입니다.
+for i in range(n):
+    u, v, w = tem[2 + i*3], tem[2 + i*3+1], tem[2 + i*3+2]
+    # 양방향 간선에 대해 두 도시간 여러 간선이 주어질 수 있으므로 min 값으로 저장합니다
+    A[u][v] = min(A[u][v], w)
+    A[v][u] = min(A[v][u], w)
+for i in range(n):
+    for j in range(n):
+        if i != j and A[i][j] != int(1e9):
+            arr[i].append((j, A[i][j]))
+            arr[j].append((i, A[i][j]))
+
+# for i in range(2,m*3,3):
+#     a,b,c = tem[i],tem[i+1],tem[i+2]
+#     arr[a].append((b,c))
+#     arr[b].append((a,c))
 def dik(start):
     d = [int(1e11)]*(n+1)
     d[start] = 0
@@ -31,7 +45,7 @@ for _ in range(command-1):
     com = list(map(int, input().split()))
     if com[0] == 200:
         cost = com[2] - d[com[3]]
-        if d[com[3]] >= int(1e11) or cost < 0:
+        if cost < 0:
             h.heappush(_map,(100,com[1],com[3],com[2]))
         else:
             h.heappush(_map,(-cost,com[1],com[3],com[2]))
@@ -52,14 +66,16 @@ for _ in range(command-1):
     elif com[0] == 300:
         del_arr.add(com[1])
     else:
+        # print(d)
         d = dik(com[1])
+        # print(d)
         tem = []
         for i in range(len(_map)):
             a,b,c,e = _map[i]
             if b in del_arr:
                 continue
             cost = e - d[c]
-            if d[c] >= int(1e11) or cost < 0:
+            if cost < 0:
                 h.heappush(tem,(100,b,c,e))
             else:
                 h.heappush(tem,(-cost,b,c,e))
