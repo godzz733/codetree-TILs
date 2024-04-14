@@ -1,16 +1,21 @@
 import sys; input = sys.stdin.readline
 import heapq as h
+
 command = int(input())
 tem = list(map(int, input().split()))[1:]
 n, m = tem[0], tem[1]
+test = [0] * (n+1)
 arr = [[] for _ in range(n+1)]
 for i in range(2,m*3,3):
     a,b,c = tem[i],tem[i+1],tem[i+2]
+    if a == b:
+        test[a] = c
+        continue
     arr[a].append((b,c))
     arr[b].append((a,c))
 def dik(start):
     d = [int(1e9)]*(n+1)
-    d[start] = 0
+    d[start] = test[start]
     q = [(0,start)]
     while q:
         dist, now = h.heappop(q)
@@ -48,7 +53,8 @@ for _ in range(command-1):
         del_arr.add(com[1])
     else:
         d = dik(com[1])
+        tem = []
         for i in range(len(_map)):
             a,b,c,e = _map[i]
-            _map[i] = (-(e-d[c]),b,c,e)
-        h.heapify(_map)
+            h.heappush(tem,(-(e-d[c]),b,c,e))
+        _map = tem
