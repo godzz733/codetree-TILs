@@ -18,8 +18,9 @@ for i in range(n):
     for j in range(n):
         if i != j and A[i][j] != int(1e9):
             arr[i].append((j, A[i][j]))
+        elif i != j and A[j][i] != int(1e9):
             arr[j].append((i, A[j][i]))
-
+# print(A)
 # for i in range(2,m*3,3):
 #     a,b,c = tem[i],tem[i+1],tem[i+2]
 #     arr[a].append((b,c))
