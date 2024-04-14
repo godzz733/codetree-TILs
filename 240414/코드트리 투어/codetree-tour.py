@@ -30,7 +30,10 @@ _map = []
 for _ in range(command-1):
     com = list(map(int, input().split()))
     if com[0] == 200:
-        h.heappush(_map,((-(com[2]- d[com[3]])),com[1],com[3],com[2]))
+        cost = com[2] - d[com[3]]
+        if d[com[3]] == int(1e11):
+            cost = -int(1e11)
+        h.heappush(_map,(-cost,com[1],com[3],com[2]))
     elif com[0] == 400:
         while _map:
             tem = h.heappop(_map)
@@ -52,5 +55,8 @@ for _ in range(command-1):
         tem = []
         for i in range(len(_map)):
             a,b,c,e = _map[i]
-            h.heappush(tem,(-(e-d[c]),b,c,e))
+            cost = e - d[c]
+            if d[c] == int(1e11):
+                cost = -int(1e11)
+            h.heappush(tem,(-cost,b,c,e))
         _map = tem
