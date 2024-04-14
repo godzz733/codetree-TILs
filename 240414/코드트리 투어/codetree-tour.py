@@ -12,7 +12,8 @@ for i in range(2,m*3,3):
 def dik(start):
     d = [int(1e11)]*(n+1)
     d[start] = 0
-    q = [(0,start)]
+    q = []
+    h.heappush(q,(0,start))
     while q:
         dist, now = h.heappop(q)
         if d[now] < dist:
@@ -25,7 +26,6 @@ def dik(start):
     return d
 d = dik(0)
 del_arr = set()
-now = 0
 _map = []
 for _ in range(command-1):
     com = list(map(int, input().split()))
