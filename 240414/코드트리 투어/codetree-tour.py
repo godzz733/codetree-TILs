@@ -31,7 +31,7 @@ for _ in range(command-1):
     com = list(map(int, input().split()))
     if com[0] == 200:
         cost = com[2] - d[com[3]]
-        if d[com[3]] == int(1e11):
+        if d[com[3]] >= int(1e11):
             cost = -int(1e11)
         h.heappush(_map,(-cost,com[1],com[3],com[2]))
     elif com[0] == 400:
@@ -55,8 +55,10 @@ for _ in range(command-1):
         tem = []
         for i in range(len(_map)):
             a,b,c,e = _map[i]
+            if b in del_arr:
+                continue
             cost = e - d[c]
-            if d[c] == int(1e11):
+            if d[c] >= int(1e11):
                 cost = -int(1e11)
             h.heappush(tem,(-cost,b,c,e))
         _map = tem
