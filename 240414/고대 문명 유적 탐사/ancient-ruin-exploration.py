@@ -76,7 +76,7 @@ def turn_cnt(x,y,cnt):
         # for i in range(5):
         #     print(*arr[i])
         # print()
-    print(num)
+    print(num, end=" ")
     
 def real_del(x,y,v):
     global arr
