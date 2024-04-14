@@ -8,8 +8,9 @@ arr = [[] for _ in range(n+1)]
 A = [[int(1e9)]*n for _ in range(n)]
 for i in range(n):
     A[i][i] = 0  # 도시 자신에게 가는 비용은 0입니다.
+tem = tem[2:]
 for i in range(n):
-    u, v, w = tem[2 + i*3], tem[2 + i*3+1], tem[2 + i*3+2]
+    u, v, w = tem[i*3], tem[i*3+1], tem[i*3+2]
     # 양방향 간선에 대해 두 도시간 여러 간선이 주어질 수 있으므로 min 값으로 저장합니다
     A[u][v] = min(A[u][v], w)
     A[v][u] = min(A[v][u], w)
