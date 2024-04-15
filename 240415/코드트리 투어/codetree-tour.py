@@ -27,10 +27,14 @@ d = dik(0)
 del_arr = set()
 now = 0
 _map = []
+id = set()
 for _ in range(command-1):
     com = list(map(int, input().split()))
     if com[0] == 200:
-        h.heappush(_map,((-(com[2]- d[com[3]])),com[1],com[3],com[2]))
+        if com[1] in del_arr:
+            del_arr.remove(com[1])
+        cost = -(com[2] - d[com[3]])
+        h.heappush(_map,(cost if cost <= 0 else 100,com[1],com[3],com[2]))
     elif com[0] == 400:
         while _map:
             tem = h.heappop(_map)
